@@ -43,7 +43,10 @@ const Page = () => {
         </div>
       ) : (
         Object.keys(allChecklists).map((listId) => (
-          <IndividualList onClick={() => router.push(`/${listId}`)}>
+          <IndividualList
+            key={listId}
+            onClick={() => router.push(`/${listId}`)}
+          >
             <div>{allChecklists[listId].name}</div>
             <div>{allChecklists[listId].type}</div>
             <div>{allChecklists[listId].eventDate}</div>
