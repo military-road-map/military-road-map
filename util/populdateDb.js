@@ -18,7 +18,6 @@ function createListItem(text="", isComplete=false, minTimeFromTarget=0, maxTimeF
 /**
  * Method to standardize creating a list
  * @param {string} name
- * @param {type} id
  * @param {string} targetDate 
  * @param {{}} tasks  
  */
@@ -26,8 +25,7 @@ function createListItem(text="", isComplete=false, minTimeFromTarget=0, maxTimeF
 function createList(name="Example List", targetDate="2022-01-01T00:00:00", tasks ={}){
     return {
         name,
-        type,
-        eventDate,
+        targetDate,
         tasks
     }
 }
