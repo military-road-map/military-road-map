@@ -20,6 +20,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "mongodb": "^3.6.5",
     "next": "^10.0.7",
     "next-auth": "latest",
     "react": "^17.0.1",
