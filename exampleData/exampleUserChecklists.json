@@ -1,0 +1,76 @@
+{
+  "0": {
+    "name": "Separation Checklist",
+    "type": "separation",
+    "eventDate": "01-01-2022",
+    "tasks": {
+      "0": {
+        "task": "This is task one",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      },
+      "1": {
+        "task": "This is task two",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      },
+      "2": {
+        "task": "This is task three",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      }
+    }
+  },
+  "1": {
+    "name": "PCS Checklist",
+    "type": "pcs",
+    "eventDate": "25-10-2021",
+    "tasks": {
+      "0": {
+        "task": "This is task one",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      },
+      "1": {
+        "task": "This is task two",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      },
+      "2": {
+        "task": "This is task three",
+        "description": "Description of task one",
+        "isCompleted": false,
+        "startWindowInDays": 540,
+        "endWindowInDays": 360,
+        "resources": ["resource link 1", "resource link 2"],
+        "dateCompleted": "",
+        "timeCompleted": ""
+      }
+    }
+  }
+}
