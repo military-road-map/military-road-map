@@ -28,16 +28,19 @@ const Page = () => {
    *  name: checkListName,
    *  type: checkListType,
    *  date: DateOfSeperation,
-   *  tasks: [
-   *    {
+   *  tasks: {
+   *    1: {
    *      task: "This is task one",
    *      description: "Brief Description"
    *      isCompleted: trueOrFalse,
-   *      timeBracket: 12,
-   *      resources: ["link", "link"]
+   *      starting: 24,
+   *      ending:   18,
+   *      resources: ["link", "link"],
+   *      dateCompleted: "day/month/year",
+   *      timeCompleted: "1234",
    *    }
    *  ],
-   * }
+   * }}
    */
   return (
     <Layout>

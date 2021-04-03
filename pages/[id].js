@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Task from "../components/tasks/Task";
+import Tasks from "../components/tasks/Tasks";
 
 const sampleData = {
   1: {
@@ -38,8 +37,10 @@ const Checklist = () => {
     const incomplete = [];
 
     // seperating tasks into complete and incomplete tasks
-    Object.values(sampleData).forEach((task) =>
-      task.isCompleted ? complete.push(task) : incomplete.push(task)
+    Object.keys(sampleData).forEach((taskId) =>
+      taskId.isCompleted
+        ? complete.push({ taskId: taskId, taskInfo: sampleData[taskId] })
+        : incomplete.push({ taskId: taskId, taskInfo: sampleData[taskId] })
     );
 
     setCompletedTasks(() => complete);
@@ -47,10 +48,32 @@ const Checklist = () => {
   }, []);
   return (
     <div>
-      <div>
-        <h5>INCOMPLETE TASKS</h5>
-        {incompleteTasks.map((taskInfo) => (
-          <Task taskInfo={taskInfo} />
+      <div style={{ textAlign: "center" }}>
+        <h4 style={{ borderBottom: "1px solid black" }}>INCOMPLETE TASKS</h4>
+        {incompleteTasks.map(({ taskId, taskInfo }, index) => (
+          <Tasks
+            taskId={taskId}
+            taskInfo={taskInfo}
+            completedTasks={completedTasks}
+            setCompletedTasks={setCompletedTasks}
+            incompleteTasks={incompleteTasks}
+            setIncompleteTasks={setIncompleteTasks}
+            index={index}
+          />
+        ))}
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <h4 style={{ borderBottom: "1px solid black" }}>COMPLETE TASKS</h4>
+        {completedTasks.map(({ taskId, taskInfo }, index) => (
+          <Tasks
+            taskId={taskId}
+            taskInfo={taskInfo}
+            completedTasks={completedTasks}
+            setCompletedTasks={setCompletedTasks}
+            incompleteTasks={incompleteTasks}
+            setIncompleteTasks={setIncompleteTasks}
+            index={index}
+          />
         ))}
       </div>
     </div>
