@@ -45,8 +45,6 @@ const Page = () => {
 
       setAllChecklists(() => updatedChecklists);
 
-      console.log(updatedChecklists);
-
       fetch("/api/user/checklists", {
         method: "POST",
         headers: {
