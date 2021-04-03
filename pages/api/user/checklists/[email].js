@@ -1,6 +1,6 @@
 // TODO - Delete this file - used for testing and setting up db
 
-import { connectToDatabase } from "../../../util/mongodb";
+import { connectToDatabase } from "../../../../util/mongodb";
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
