@@ -9,39 +9,7 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (data) {
-      let checklists = data.checklists;
-      for (const key in checklists) {
-        checklists[key].tasks = {
-          1: {
-            task: "Task 1",
-            description: "Description Of Take One",
-            startWindowInDays: 540,
-            endWindowInDays: 360,
-            resources: ["resource link 1", "resource link 2", ""],
-            dateCompleted: "",
-            timeCompleted: "",
-          },
-          2: {
-            task: "Task 2",
-            description: "Description Of Take Two",
-            startWindowInDays: 540,
-            endWindowInDays: 360,
-            resources: ["resource link 1", "resource link 2", ""],
-            dateCompleted: "",
-            timeCompleted: "",
-          },
-          3: {
-            task: "Task 3",
-            description: "Description Of Take Three",
-            startWindowInDays: 540,
-            endWindowInDays: 360,
-            resources: ["resource link 1", "resource link 2", ""],
-            dateCompleted: "",
-            timeCompleted: "",
-          },
-        };
-      }
-      setAllChecklists(() => checklists);
+      setAllChecklists(() => data.checklists);
     }
   }, [data]);
 
