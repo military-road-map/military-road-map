@@ -16,5 +16,7 @@ Api Routes:
 GET /api/user/checklists -> Returns user object with all checklists for logged in user
 POST /api/user/checklists -> Modifies the checklist the user has for logged in user
 
-GET /api/checklist/[name].js -> Gets the template for a specific checklist
-POST /api/checklist/[name].js -> MOdifies a specific checklist
+GET /api/checklist/[type].js -> Gets the template for a specific checklist
+POST /api/checklist/[type].js -> Modifies a specific checklist
+
+GET /api/checklist/add/[type].js ->Adds specified template checklist to the user's account
