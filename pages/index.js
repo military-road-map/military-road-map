@@ -31,7 +31,7 @@ const Page = () => {
         <div>Type</div>
         <div>Future Date</div>
       </ListHeader>
-      {Object.keys(allChecklists).length === 0 ? (
+      {!allChecklists || Object.keys(allChecklists).length === 0 ? (
         <div
           style={{
             display: "flex",
