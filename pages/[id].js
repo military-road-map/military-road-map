@@ -1,53 +1,61 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ChecklistContext } from "../components/contextAndProvider/context";
+import Layout from "../components/layout";
 import Tasks from "../components/tasks/Tasks";
-
-const sampleData = {
-  1: {
-    taskName: "Task Name 1",
-    description: "Brief Description",
-    isCompleted: false,
-    timeBracket: 12,
-    resources: ["link1", "link2"],
-  },
-  2: {
-    taskName: "Task Name 2",
-    description: "Brief Description",
-    isCompleted: false,
-    timeBracket: 8,
-    resources: ["link1", "link2"],
-  },
-  3: {
-    taskName: "Task Name 3",
-    description: "Brief Description",
-    isCompleted: false,
-    timeBracket: 20,
-    resources: ["link1", "link2"],
-  },
-};
 
 const Checklist = () => {
   const router = useRouter();
   const { id } = router.query;
   const [completedTasks, setCompletedTasks] = useState([]);
   const [incompleteTasks, setIncompleteTasks] = useState([]);
+  const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
 
   useEffect(() => {
-    const complete = [];
-    const incomplete = [];
+    if (id && id !== undefined) {
+      let complete = [];
+      let incomplete = [];
+      const tasks = allChecklists[id].tasks;
+      Object.keys(tasks).forEach((taskId) => {
+        if (tasks[taskId].timeCompleted) {
+          complete.push({ taskId, taskInfo: tasks[taskId] });
+        } else {
+          incomplete.push({ taskId, taskInfo: tasks[taskId] });
+        }
+      });
+      console.log({ complete, incomplete });
+      setCompletedTasks(() => complete);
+      setIncompleteTasks(() => incomplete);
+      // seperating tasks into complete and incomplete tasks
+      //   Object.keys(allChecklists[id].tasks).forEach((taskId, index) => {
+      //     if (allChecklists[id].tasks[taskId].timeCompleted.length > 0) {
+      //       complete = [
+      //         ...complete,
+      //         {
+      //           taskId: taskId,
+      //           taskInfo: allChecklists[id].tasks[taskId],
+      //         },
+      //       ];
+      //     } else {
+      //       incomplete = [
+      //         ...incomplete,
+      //         {
+      //           taskId: taskId,
+      //           taskInfo: allChecklists[id].tasks[taskId],
+      //         },
+      //       ];
+      //     }
+      //     if (index === allChecklists[id].tasks.length - 1) {
+      //       console.log({ complete });
+      //       setCompletedTasks(() => complete);
+      //       setIncompleteTasks(() => incomplete);
+      //     }
+      //   });
+    }
+  }, [id]);
 
-    // seperating tasks into complete and incomplete tasks
-    Object.keys(sampleData).forEach((taskId) =>
-      taskId.isCompleted
-        ? complete.push({ taskId: taskId, taskInfo: sampleData[taskId] })
-        : incomplete.push({ taskId: taskId, taskInfo: sampleData[taskId] })
-    );
-
-    setCompletedTasks(() => complete);
-    setIncompleteTasks(() => incomplete);
-  }, []);
   return (
-    <div>
+    <Layout>
       <div style={{ textAlign: "center" }}>
         <h4 style={{ borderBottom: "1px solid black" }}>INCOMPLETE TASKS</h4>
         {incompleteTasks.map(({ taskId, taskInfo }, index) => (
@@ -76,7 +84,7 @@ const Checklist = () => {
           />
         ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 
