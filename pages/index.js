@@ -3,7 +3,6 @@ import Layout from "../components/layout";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ChecklistContext } from "../components/contextAndProvider/context";
-import { getAllChecklistNames } from "./api/checklists";
 
 const ListHeader = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const IndividualList = styled(ListHeader)`
   padding: 5px;
 `;
 
-const Page = ({ checklistNames }) => {
+const Page = () => {
   const router = useRouter();
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
 
@@ -70,15 +69,10 @@ const Page = ({ checklistNames }) => {
           autoComplete="off"
         ></input>
         <select id="checklistType">
-          <option value="none" disabled selected>
-            Select One...
-          </option>
+          <option value="none">Select One...</option>
           <optgroup label="Checklists">
-            {checklistNames.map((checklistName) => (
-              <option key={checklistName} value={checklistName}>
-                {checklistName}
-              </option>
-            ))}
+            <option value="Seperation">Seperation</option>
+            <option value="PCS">PCS</option>
           </optgroup>
         </select>
         <input id="date" type="date"></input>
@@ -115,16 +109,5 @@ const Page = ({ checklistNames }) => {
     </Layout>
   );
 };
-
-// TODO - Need to pull updated checklists when user adds a new template
-// This gets called on every request
-export async function getServerSideProps() {
-  const checklistNames = await getAllChecklistNames();
-
-  console.log(checklistNames);
-
-  // Pass data to the page via props
-  return { props: { checklistNames } };
-}
 
 export default Page;
