@@ -6,7 +6,7 @@ import styled from "styled-components";
 const ListHeader = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 10px;
   border-bottom: 1px solid black;
 `;
@@ -22,25 +22,56 @@ const IndividualList = styled(ListHeader)`
 const Page = () => {
   const router = useRouter();
   const [checkLists, setCheckLists] = useState([]);
+  /**
+   * {
+   *  id: 1,
+   *  name: checkListName,
+   *  type: checkListType,
+   *  date: DateOfSeperation,
+   *  tasks: [
+   *    {
+   *      task: "This is task one",
+   *      description: "Brief Description"
+   *      isCompleted: trueOrFalse,
+   *      timeBracket: 12,
+   *      resources: ["link", "link"]
+   *    }
+   *  ],
+   * }
+   */
   return (
     <Layout>
       <ListHeader>
         <div>Name</div>
         <div>Type</div>
-        <div>Date</div>
+        <div>Future Date</div>
       </ListHeader>
-      {checkLists.map(({ date, checklistType, checklistName }) => (
-        <IndividualList onClick={() => router.push(`/${checklistName}`)}>
-          <div>{checklistName}</div>
-          <div>{checklistType}</div>
-          <div>{date}</div>
-        </IndividualList>
-      ))}
+      {checkLists.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
+          No Checklists
+        </div>
+      ) : (
+        checkLists.map(({ date, checklistType, checklistName }) => (
+          <IndividualList onClick={() => router.push(`/${checklistName}`)}>
+            <div>{checklistName}</div>
+            <div>{checklistType}</div>
+            <div>{date}</div>
+          </IndividualList>
+        ))
+      )}
       <div
         style={{
           margin: "10px 0px",
           display: "flex",
           justifyContent: "space-between",
+          borderTop: "1px solid black",
+          padding: "5px",
         }}
       >
         <input
