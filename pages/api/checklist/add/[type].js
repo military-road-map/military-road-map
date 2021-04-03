@@ -49,7 +49,7 @@ export default async (req, res) => {
     }
 
     const newChecklistKey =
-      Math.max(Object.keys(user.checklists).map((x) => parseInt(x, 10))) + 1;
+      Math.max(...Object.keys(user.checklists).map((x) => parseInt(x, 10))) + 1;
 
     const newChecklists = {
       ...user.checklists,
