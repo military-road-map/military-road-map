@@ -1,24 +1,17 @@
+// TODO - Delete this file - used for testing and setting up db
+
 import { connectToDatabase } from "../../../util/mongodb";
-import { getSession } from "next-auth/client";
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
-  const session = await getSession({ req });
 
   if (!db) {
     res.status(400).send({ message: "No db connection" });
     return;
   }
 
-  if (!session) {
-    res.status(400).send({ message: "User is not logged in" });
-    return;
-  }
-
-  // Extract email from session
-  const {
-    user: { email },
-  } = session;
+  // Get email from query
+  const { email } = req.query;
 
   // GET
   if (req.method == "GET") {
@@ -36,10 +29,14 @@ export default async (req, res) => {
   }
   // POST
   else if (req.method == "POST") {
-    const { updatedChecklists } = req.body;
+    const updatedChecklists = req.body;
+    console.log(req.body);
 
     const existingUser = await db.collection("users").findOne({ email: email });
     const newUser = { ...existingUser, checklists: updatedChecklists };
+
+    console.log("new user");
+    console.log(newUser);
 
     const result = await db
       .collection("users")
