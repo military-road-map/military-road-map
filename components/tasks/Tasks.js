@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Task = styled.div`
@@ -7,8 +7,16 @@ const Task = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+  justify-content: space-between;
+  background-color: ${({ color }) => color};
 `;
 const TaskName = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   border-bottom: ${({ showDetails }) =>
     showDetails ? "1px solid black" : "none"};
   cursor: pointer;
@@ -23,6 +31,7 @@ const TaskDetails = styled.div`
 `;
 
 const Tasks = ({
+  eventDate,
   taskId,
   taskInfo,
   completedTasks,
@@ -41,22 +50,41 @@ const Tasks = ({
     dateCompleted,
     timeCompleted,
   } = taskInfo;
+
+  const [differenceInDays, setDifferenceInDays] = useState(999999);
+
+  useEffect(() => {
+    const currentDate = new Date().getTime();
+    const date = eventDate.split("-");
+    const dueDateString = `${date[1]}/${date[0]}/${date[2]}`;
+    const dueDate = new Date(dueDateString).getTime();
+
+    const differenceInTime =
+      dueDate + endWindowInDays * 1000 * 3600 * 24 - currentDate;
+    setDifferenceInDays(() => Math.ceil(differenceInTime / (1000 * 3600 * 24)));
+  }, []);
+
   return (
-    <Task>
+    <Task
+      color={dateCompleted ? "green" : differenceInDays > 14 ? "yellow" : "red"}
+    >
       <TaskName
         showDetails={showDetails}
         onClick={() => setShowDetails(() => !showDetails)}
       >
-        {task}
+        <div>{task}</div>
+        <div>
+          {dateCompleted
+            ? `Completed on ${dateCompleted} at ${timeCompleted}`
+            : `Due: ${differenceInDays} Days`}
+        </div>
       </TaskName>
       <TaskDetails showDetails={showDetails}>
         {description}
         <br />
         resources: {resources}
         <br />
-        {dateCompleted ? (
-          `Completed on ${dateCompleted} at ${timeCompleted}`
-        ) : (
+        {dateCompleted ? null : ( // `Completed on ${dateCompleted} at ${timeCompleted}`
           <button
             onClick={() => {
               const date = new Date();
@@ -71,7 +99,6 @@ const Tasks = ({
                   taskId,
                   taskInfo: {
                     ...taskInfo,
-                    isCompleted: true,
                     dateCompleted: `${day}/${month + 1}/${year}`,
                     timeCompleted: `${
                       hour.toString().length === 1 ? `0${hour}` : hour
