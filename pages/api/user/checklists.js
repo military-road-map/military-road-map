@@ -1,5 +1,6 @@
 import { connectToDatabase } from "../../../util/mongodb";
 import { getSession } from "next-auth/client";
+import { createUserInDb } from "../../../util/dbUserUtil";
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
@@ -25,9 +26,9 @@ export default async (req, res) => {
     const user = await db.collection("users").findOne({ email: email });
 
     if (!user) {
-      res
-        .status(200)
-        .json({ message: "No checklists currently for this email" });
+      const result = await createUserInDb(db, email);
+
+      res.status(200).json({ message: "Created new user in db", result });
       return;
     }
 
