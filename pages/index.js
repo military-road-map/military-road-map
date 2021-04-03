@@ -31,7 +31,7 @@ const Page = () => {
     const checklistName = document.getElementById("checklistName").value;
 
     if (date && checklistType !== "none" && checklistName) {
-      const index = Object.keys(allChecklists).length + 1;
+      const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
 
       const updatedChecklists = {
         ...allChecklists,
