@@ -24,25 +24,25 @@ const IndividualList = styled(ListHeader)`
 const Page = () => {
   const router = useRouter();
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
-  const { data } = useSWR("/api/checklists");
+  const { data: checklistTemplates } = useSWR("/api/checklists");
 
   function handleAddChecklist(e) {
     e.preventDefault();
     const date = document.getElementById("date").value;
-    const checklistType = document.getElementById("checklistType").value;
+    const checklistInd = document.getElementById("checklistType").value;
     const checklistName = document.getElementById("checklistName").value;
 
-    if (date && checklistType !== "none" && checklistName) {
+    const checklistTemplate = {
+      ...checklistTemplates[checklistInd],
+      eventDate: date,
+    };
+
+    if (date && checklistInd !== "none" && checklistName) {
       const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
 
       const updatedChecklists = {
         ...allChecklists,
-        [index]: {
-          eventDate: date,
-          type: checklistType,
-          name: checklistName,
-          tasks: [],
-        },
+        [index]: checklistTemplate,
       };
 
       setAllChecklists(() => updatedChecklists);
@@ -111,11 +111,11 @@ const Page = () => {
         <select id="checklistType">
           <option value="none">Select One...</option>
           <optgroup label="Checklists">
-            {!data
+            {!checklistTemplates
               ? null
-              : data.map((checklist) => {
+              : Object.entries(checklistTemplates).map(([key, checklist]) => {
                   return (
-                    <option key={checklist._id} value={checklist.type}>
+                    <option key={key} value={key}>
                       {checklist.name}
                     </option>
                   );
