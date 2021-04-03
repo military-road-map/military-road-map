@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { ChecklistContext } from "../components/contextAndProvider/context";
 
 const ListHeader = styled.div`
   display: flex;
@@ -21,27 +22,8 @@ const IndividualList = styled(ListHeader)`
 
 const Page = () => {
   const router = useRouter();
-  const [checkLists, setCheckLists] = useState([]);
-  /**
-   * {
-   *  id: 1,
-   *  name: checkListName,
-   *  type: checkListType,
-   *  date: DateOfSeperation,
-   *  tasks: {
-   *    1: {
-   *      task: "This is task one",
-   *      description: "Brief Description"
-   *      isCompleted: trueOrFalse,
-   *      starting: 24,
-   *      ending:   18,
-   *      resources: ["link", "link"],
-   *      dateCompleted: "day/month/year",
-   *      timeCompleted: "1234",
-   *    }
-   *  ],
-   * }}
-   */
+  const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
+
   return (
     <Layout>
       <ListHeader>
@@ -49,7 +31,7 @@ const Page = () => {
         <div>Type</div>
         <div>Future Date</div>
       </ListHeader>
-      {checkLists.length === 0 ? (
+      {Object.keys(allChecklists).length === 0 ? (
         <div
           style={{
             display: "flex",
@@ -60,11 +42,11 @@ const Page = () => {
           No Checklists
         </div>
       ) : (
-        checkLists.map(({ date, checklistType, checklistName }) => (
-          <IndividualList onClick={() => router.push(`/${checklistName}`)}>
-            <div>{checklistName}</div>
-            <div>{checklistType}</div>
-            <div>{date}</div>
+        Object.keys(allChecklists).map((listId) => (
+          <IndividualList onClick={() => router.push(`/${listId}`)}>
+            <div>{allChecklists[listId].name}</div>
+            <div>{allChecklists[listId].type}</div>
+            <div>{allChecklists[listId].eventDate}</div>
           </IndividualList>
         ))
       )}
@@ -81,10 +63,14 @@ const Page = () => {
           id="checklistName"
           type="text"
           placeholder="Enter Checklist Name"
+          autoComplete="off"
         ></input>
         <select id="checklistType">
-          <option value="Seperation">Seperation</option>
-          <option value="PCS">PCS</option>
+          <option value="none">Select One...</option>
+          <optgroup label="Checklists">
+            <option value="Seperation">Seperation</option>
+            <option value="PCS">PCS</option>
+          </optgroup>
         </select>
         <input id="date" type="date"></input>
         <button
@@ -94,10 +80,24 @@ const Page = () => {
               .value;
             const checklistName = document.getElementById("checklistName")
               .value;
-            setCheckLists(() => [
-              ...checkLists,
-              { date, checklistType, checklistName },
-            ]);
+
+            if (date && checklistType !== "none" && checklistName) {
+              const index = Object.keys(allChecklists).length + 1;
+              setAllChecklists(() => {
+                return {
+                  ...allChecklists,
+                  [index]: {
+                    eventDate: date,
+                    type: checklistType,
+                    name: checklistName,
+                    tasks: [],
+                  },
+                };
+              });
+              document.getElementById("date").value = "";
+              document.getElementById("checklistType").value = "none";
+              document.getElementById("checklistName").value = "";
+            }
           }}
         >
           Submit

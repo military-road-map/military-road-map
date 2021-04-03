@@ -33,10 +33,10 @@ const Tasks = ({
 }) => {
   const [showDetails, setShowDetails] = useState(false);
   const {
-    taskName,
+    task,
     description,
-    isCompleted,
-    timeBracket,
+    startWindowInDays,
+    endWindowInDays,
     resources,
     dateCompleted,
     timeCompleted,
@@ -47,14 +47,14 @@ const Tasks = ({
         showDetails={showDetails}
         onClick={() => setShowDetails(() => !showDetails)}
       >
-        {taskName}
+        {task}
       </TaskName>
       <TaskDetails showDetails={showDetails}>
         {description}
         <br />
         resources: {resources}
         <br />
-        {isCompleted ? (
+        {dateCompleted ? (
           `Completed on ${dateCompleted} at ${timeCompleted}`
         ) : (
           <button
