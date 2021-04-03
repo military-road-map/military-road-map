@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ChecklistContext } from "../components/contextAndProvider/context";
+import useSWR from "swr";
 
 const ListHeader = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const IndividualList = styled(ListHeader)`
 const Page = () => {
   const router = useRouter();
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
+  const { data } = useSWR("/api/checklists");
 
   function handleAddChecklist(e) {
     e.preventDefault();
@@ -109,8 +111,15 @@ const Page = () => {
         <select id="checklistType">
           <option value="none">Select One...</option>
           <optgroup label="Checklists">
-            <option value="Seperation">Seperation</option>
-            <option value="PCS">PCS</option>
+            {!data
+              ? null
+              : data.map((checklist) => {
+                  return (
+                    <option key={checklist._id} value={checklist.type}>
+                      {checklist.name}
+                    </option>
+                  );
+                })}
           </optgroup>
         </select>
         <input id="date" type="date"></input>

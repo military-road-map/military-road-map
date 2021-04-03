@@ -9,7 +9,6 @@ export default async (req, res) => {
   }
 
   const checklistArr = await db.collection("checklists").find({}).toArray();
-  const checklistNames = checklistArr.map(({ name }) => name);
 
-  res.status(200).json(checklistNames);
+  res.status(200).json(checklistArr);
 };
