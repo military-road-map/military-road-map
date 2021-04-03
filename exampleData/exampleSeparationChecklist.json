@@ -1,0 +1,37 @@
+{
+  "name": "Separation Checklist",
+  "type": "separation",
+  "eventDate": "01-01-2022",
+  "tasks": {
+    "1": {
+      "task": "This is separation task one",
+      "description": "Description of task one",
+      "isCompleted": false,
+      "startWindowInMs": 47300000000,
+      "endWindowInMs": 31540000000,
+      "resources": ["resource link 1", "resource link 2"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "2": {
+      "task": "This is separation task two",
+      "description": "Description of task one",
+      "isCompleted": false,
+      "startWindowInMs": 7884000000,
+      "endWindowInMs": 7884000000,
+      "resources": ["resource link 1", "resource link 2"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "3": {
+      "task": "This is task three",
+      "description": "Description of task one",
+      "isCompleted": false,
+      "startWindowInMs": 7884000000,
+      "endWindowInMs": 7884000000,
+      "resources": ["resource link 1", "resource link 2"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    }
+  }
+},
