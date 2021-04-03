@@ -1,10 +1,10 @@
 {
-  "0": {
+  "1": {
     "name": "Separation Checklist",
     "type": "separation",
     "eventDate": "01-01-2022",
     "tasks": {
-      "0": {
+      "1": {
         "task": "This is task one",
         "description": "Description of task one",
         "isCompleted": false,
@@ -14,7 +14,7 @@
         "dateCompleted": "",
         "timeCompleted": ""
       },
-      "1": {
+      "2": {
         "task": "This is task two",
         "description": "Description of task one",
         "isCompleted": false,
@@ -24,7 +24,7 @@
         "dateCompleted": "",
         "timeCompleted": ""
       },
-      "2": {
+      "3": {
         "task": "This is task three",
         "description": "Description of task one",
         "isCompleted": false,
@@ -36,12 +36,12 @@
       }
     }
   },
-  "1": {
+  "2": {
     "name": "PCS Checklist",
     "type": "pcs",
     "eventDate": "25-10-2021",
     "tasks": {
-      "0": {
+      "1": {
         "task": "This is task one",
         "description": "Description of task one",
         "isCompleted": false,
@@ -51,7 +51,7 @@
         "dateCompleted": "",
         "timeCompleted": ""
       },
-      "1": {
+      "2": {
         "task": "This is task two",
         "description": "Description of task one",
         "isCompleted": false,
@@ -61,7 +61,7 @@
         "dateCompleted": "",
         "timeCompleted": ""
       },
-      "2": {
+      "3": {
         "task": "This is task three",
         "description": "Description of task one",
         "isCompleted": false,
