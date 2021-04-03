@@ -35,9 +35,6 @@ export default async (req, res) => {
     const existingUser = await db.collection("users").findOne({ email: email });
     const newUser = { ...existingUser, checklists: updatedChecklists };
 
-    console.log("new user");
-    console.log(newUser);
-
     const result = await db
       .collection("users")
       .replaceOne({ email: email }, newUser, { upsert: true });

@@ -36,7 +36,7 @@ export default async (req, res) => {
   }
   // POST
   else if (req.method == "POST") {
-    const { updatedChecklists } = req.body;
+    const updatedChecklists = req.body;
 
     const existingUser = await db.collection("users").findOne({ email: email });
     const newUser = { ...existingUser, checklists: updatedChecklists };
