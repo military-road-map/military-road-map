@@ -24,6 +24,46 @@ const Page = () => {
   const router = useRouter();
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
 
+  function handleAddChecklist(e) {
+    e.preventDefault();
+    const date = document.getElementById("date").value;
+    const checklistType = document.getElementById("checklistType").value;
+    const checklistName = document.getElementById("checklistName").value;
+
+    if (date && checklistType !== "none" && checklistName) {
+      const index = Object.keys(allChecklists).length + 1;
+
+      const updatedChecklists = {
+        ...allChecklists,
+        [index]: {
+          eventDate: date,
+          type: checklistType,
+          name: checklistName,
+          tasks: [],
+        },
+      };
+
+      setAllChecklists(() => updatedChecklists);
+
+      console.log(updatedChecklists);
+
+      fetch("/api/user/checklists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "applciation/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(updatedChecklists),
+      })
+        .then((resp) => resp.json())
+        .then(console.log);
+
+      document.getElementById("date").value = "";
+      document.getElementById("checklistType").value = "none";
+      document.getElementById("checklistName").value = "";
+    }
+  }
+
   return (
     <Layout>
       <ListHeader>
@@ -76,35 +116,7 @@ const Page = () => {
           </optgroup>
         </select>
         <input id="date" type="date"></input>
-        <button
-          onClick={() => {
-            const date = document.getElementById("date").value;
-            const checklistType = document.getElementById("checklistType")
-              .value;
-            const checklistName = document.getElementById("checklistName")
-              .value;
-
-            if (date && checklistType !== "none" && checklistName) {
-              const index = Object.keys(allChecklists).length + 1;
-              setAllChecklists(() => {
-                return {
-                  ...allChecklists,
-                  [index]: {
-                    eventDate: date,
-                    type: checklistType,
-                    name: checklistName,
-                    tasks: [],
-                  },
-                };
-              });
-              document.getElementById("date").value = "";
-              document.getElementById("checklistType").value = "none";
-              document.getElementById("checklistName").value = "";
-            }
-          }}
-        >
-          Submit
-        </button>
+        <button onClick={handleAddChecklist}>Submit</button>
       </div>
     </Layout>
   );
