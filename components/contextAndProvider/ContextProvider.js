@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { ChecklistContext } from "./context";
 
 const ContextProvider = ({ children }) => {
-  const data = useSWR("http://localhost:3000/api/user/checklists").data;
+  const data = useSWR("/api/user/checklists").data;
 
   const [allChecklists, setAllChecklists] = useState({});
 
