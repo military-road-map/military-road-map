@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useSession } from "next-auth/client";
 
 const FormWrapperStyle = styled.div`
   border-top: 2px solid black;
@@ -32,6 +33,8 @@ const FormWrapperStyle = styled.div`
 `;
 
 export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
+  const [session] = useSession();
+
   return (
     <FormWrapperStyle>
       <Formik
@@ -67,6 +70,7 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
                 type="text"
                 name="checklistName"
                 placeholder="My Checklist Name"
+                autocomplete="off"
               />
               <ErrorMessage
                 className="error"
@@ -105,9 +109,16 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
                 className="error"
               />
             </div>
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
+            <div style={{ gridColumnStart: "span 2", textAlign: "center" }}>
+              <button type="submit" disabled={isSubmitting || !session}>
+                Submit
+              </button>
+              {!session ? (
+                <div className="error" style={{ float: "none" }}>
+                  Login Required
+                </div>
+              ) : null}
+            </div>
           </Form>
         )}
       </Formik>
