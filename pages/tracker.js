@@ -84,6 +84,7 @@ const Page = () => {
     const checklistTemplate = {
       ...checklistTemplates[checklistInd],
       eventDate: date,
+      name: checklistName,
     };
 
     const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
@@ -225,12 +226,12 @@ const Page = () => {
                     className="error"
                     name="checklistName"
                     component="div"
-                    style={{ display: "inline-block" }}
                   />
                 </div>
                 <label htmlFor="checklistInd">Choose a checklist:</label>
                 <div>
                   <Field as="select" name="checklistInd">
+                    <option value="">Select One...</option>
                     {!checklistTemplates
                       ? null
                       : Object.entries(checklistTemplates).map(
@@ -244,7 +245,7 @@ const Page = () => {
                         )}
                   </Field>
                   <ErrorMessage
-                    name="checklistType"
+                    name="checklistInd"
                     component="div"
                     className="error"
                   />
