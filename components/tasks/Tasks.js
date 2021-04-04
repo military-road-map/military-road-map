@@ -96,8 +96,8 @@ const Tasks = ({
         taskId,
         taskInfo: {
           ...taskInfo,
-          newDateCompleted,
-          newTimeCompleted,
+          dateCompleted: newDateCompleted,
+          timeCompleted: newTimeCompleted,
         },
       },
     ];
