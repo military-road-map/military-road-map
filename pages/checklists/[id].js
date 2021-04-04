@@ -15,7 +15,7 @@ const Checklist = () => {
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
 
   useEffect(() => {
-    if (id && id !== undefined) {
+    if (id && allChecklists && allChecklists[id]) {
       let complete = [];
       let incomplete = [];
       const tasks = allChecklists[id].tasks;
@@ -31,7 +31,7 @@ const Checklist = () => {
       setCompletedTasks(() => complete);
       setIncompleteTasks(() => incomplete);
     }
-  }, [id]);
+  }, [allChecklists, id]);
 
   function markTaskComplete(taskId, dateCompleted, timeCompleted) {
     // Making sure we change state immutably
