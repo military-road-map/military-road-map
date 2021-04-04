@@ -69,7 +69,7 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
                 type="text"
                 name="checklistName"
                 placeholder="My Checklist Name"
-                autocomplete="off"
+                autoComplete="off"
               />
               <ErrorMessage
                 className="error"
