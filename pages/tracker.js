@@ -77,7 +77,7 @@ const Page = () => {
         Object.keys(allChecklists).map((listId) => (
           <IndividualList
             key={listId}
-            onClick={() => router.push(`/checklists/${listId}`)}
+            onClick={() => router.push(`/tracks/${listId}`)}
           >
             <div>{allChecklists[listId].name}</div>
             <div>{allChecklists[listId].type}</div>
