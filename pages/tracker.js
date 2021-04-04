@@ -132,7 +132,7 @@ const Page = () => {
         }}
       >
         <div>{allChecklists[listId].name}</div>
-        <div className="type">{capitalizePCS(allChecklists[listId].type)}</div>
+        <div className="type">{capitalizePCS(allChecklists[listId].label)}</div>
         <div>{allChecklists[listId].eventDate}</div>
         <div
           onClick={(e) => {

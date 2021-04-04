@@ -87,7 +87,7 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
                       ([key, checklist]) => {
                         return (
                           <option key={key} value={key}>
-                            {checklist.name}
+                            {checklist.label}
                           </option>
                         );
                       }
