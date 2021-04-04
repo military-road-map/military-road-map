@@ -134,35 +134,42 @@ const Page = () => {
         <h2>Create a new Tracker</h2>
         <div
           style={{
-            margin: "10px 0px",
+            margin: "16px 0px",
             display: "flex",
             justifyContent: "space-between",
             borderTop: "2px solid black",
-            padding: "5px",
+            padding: "16px 5px",
           }}
         >
-          <input
-            id="checklistName"
-            type="text"
-            placeholder="Enter Checklist Name"
-            autoComplete="off"
-          ></input>
-          <select id="checklistType">
-            <option value="none">Select One...</option>
-            <optgroup label="Checklists">
-              {!checklistTemplates
-                ? null
-                : Object.entries(checklistTemplates).map(([key, checklist]) => {
-                    return (
-                      <option key={key} value={key}>
-                        {checklist.name}
-                      </option>
-                    );
-                  })}
-            </optgroup>
-          </select>
-          <input id="date" type="date"></input>
-          <button onClick={handleAddChecklist}>Submit</button>
+          <form>
+            <label>
+              Task Name:
+              <input
+                id="checklistName"
+                type="text"
+                placeholder="Enter Checklist Name"
+                autoComplete="off"
+              ></input>
+            </label>
+            <select id="checklistType">
+              <option value="none">Select One...</option>
+              <optgroup label="Checklists">
+                {!checklistTemplates
+                  ? null
+                  : Object.entries(checklistTemplates).map(
+                      ([key, checklist]) => {
+                        return (
+                          <option key={key} value={key}>
+                            {checklist.name}
+                          </option>
+                        );
+                      }
+                    )}
+              </optgroup>
+            </select>
+            <input id="date" type="date"></input>
+            <button onClick={handleAddChecklist}>Submit</button>
+          </form>
         </div>
       </TrackerStyle>
     </Layout>
