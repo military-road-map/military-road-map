@@ -63,20 +63,6 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
       >
         {({ isSubmitting }) => (
           <Form>
-            <label htmlFor="checklistName">Task Name:</label>
-            <div>
-              <Field
-                type="text"
-                name="checklistName"
-                placeholder="My Checklist Name"
-                autoComplete="off"
-              />
-              <ErrorMessage
-                className="error"
-                name="checklistName"
-                component="div"
-              />
-            </div>
             <label htmlFor="checklistInd">Choose a checklist:</label>
             <div>
               <Field as="select" name="checklistInd">
@@ -97,6 +83,20 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
                 name="checklistInd"
                 component="div"
                 className="error"
+              />
+            </div>
+            <label htmlFor="checklistName">Tracker Name:</label>
+            <div>
+              <Field
+                type="text"
+                name="checklistName"
+                placeholder="My Tracker Name"
+                autoComplete="off"
+              />
+              <ErrorMessage
+                className="error"
+                name="checklistName"
+                component="div"
               />
             </div>
             <label>Your target task date:</label>
