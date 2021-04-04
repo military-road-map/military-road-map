@@ -1,25 +1,34 @@
 # Military Road Map
 
-## Test
+[Live Site](https://military-road-map.vercel.app/)
 
-[military-road-map](https://military-road-map.vercel.app/)
+## About
 
-## Problem We are Solving
+This project was created as part of a 3-day long, remote Hackathon hosted by FallIn.
 
-## About this project
+The event hosted in April 2021 brought together veterans and others in tech from across the world to learn, explore, and work on solving the problems faced by service members and veterans. Checkout FallIn or Operation Code for more great opportunities for veterans looking to join tech.
+
+## TEAM
+
+- Mark Colby
+- Justin Umberger
+- Adrian Torres
+- Michael Beliciu
+
+### Target Audience
+
+Active Duty Service Members and Veterans
+
+### Problem We are Solving
+
+There are so many resources, key events, and references it is easy for service members and veterans to be late for or miss key timelines for significant career events (separation, PCS, etc.). By allowing users to create template checklists, with resources, to interactively track their key events and share with others, we can ensure our service members and veterans don’t miss out.
+
+### IDEA
+
+A tailored resource created specifically for service members and veterans to help them to automatically track key the steps of key career events.
 
 ## Technology
 
 Frontend: React, Next.js
-Backend: Next.js Serverless Functions (Node.js), MongoDB
-Other: Next-Auth
-
-Api Routes:
-GET /api/user/checklists -> Returns user object with all checklists for logged in user
-POST /api/user/checklists -> Modifies all the the user has for logged in user
-
-GET /api/checklist/[type] -> Gets the template for a specific checklist
-POST /api/checklist/[type] -> Modifies a specific checklist
-
-GET /api/checklist/add/[type] ->Adds specified template checklist to the user's account
-GET /api/checklists -> Return all names of template checklists. Could easily be modified to return all checklist templates
+Backend: Serverless Functions (Node.js), MongoDB
+Other: Next-Auth, Formik, Styled-Components
