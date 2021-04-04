@@ -29,9 +29,9 @@ A tailored resource created specifically for service members and veterans to hel
 
 ## Technology
 
-Frontend: React, Next.js
-Backend: Serverless Functions (Node.js), MongoDB
-Other: Next-Auth, Formik, Styled-Components
+- Frontend: React, Next.js
+- Backend: Serverless Functions (Node.js), MongoDB
+- Other: Next-Auth, Formik, Styled-Components
 
 ### Screenshots
 
