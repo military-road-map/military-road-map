@@ -78,7 +78,6 @@ const Tasks = ({
   useEffect(() => {
     const currentDate = new Date().getTime();
     const date = eventDate.split("-");
-    // const dueDateString = `${date[0]}/${date[1]}/${date[2]}`;
     const dueDate = new Date(date[0], date[1] - 1, date[2]).getTime();
 
     const differenceInTime = Math.ceil(
@@ -154,7 +153,7 @@ const Tasks = ({
         <br />
         resources: {resources}
         <br />
-        {dateCompleted ? null : ( // `Completed on ${dateCompleted} at ${timeCompleted}`
+        {dateCompleted ? null : (
           <button onClick={handleCompleteTask}>Mark Complete</button>
         )}
       </TaskDetails>
