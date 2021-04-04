@@ -1,35 +1,125 @@
 {
   "name": "Separation Checklist",
   "type": "separation",
-  "eventDate": "01-01-2022",
+  "eventDate": "",
   "tasks": {
     "1": {
-      "task": "This is separation task one",
-      "description": "Description of task one",
+      "task": "TAP Counselor Appointment",
+      "description": "Make an appointment with your local Transition Assistaance Porgram Counselor for your initial counseling",
       "isCompleted": false,
-      "startWindowInMs": 47300000000,
-      "endWindowInMs": 31540000000,
-      "resources": ["resource link 1", "resource link 2"],
+      "startWindowInMs": 746496000000,
+      "endWindowInMs": 559872000000,
+      "resources": [],
       "dateCompleted": "",
       "timeCompleted": ""
     },
     "2": {
-      "task": "This is separation task two",
-      "description": "Description of task one",
+      "task": "Attend initial counseling",
+      "description": "Attend initial counseling and complete your personal self-assessment/ Individual Transition Plan (ITP)",
       "isCompleted": false,
-      "startWindowInMs": 7884000000,
-      "endWindowInMs": 7884000000,
-      "resources": ["resource link 1", "resource link 2"],
+      "startWindowInMs": 746496000000,
+      "endWindowInMs": 559872000000,
+      "resources": [],
       "dateCompleted": "",
       "timeCompleted": ""
     },
     "3": {
-      "task": "This is task three",
-      "description": "Description of task one",
+      "task": "Pre-separation counseling",
+      "description": "Schedule/attend Pre-separation counseling (can occur before 365 days, but no later than 365 days prior to separation or retirement)",
       "isCompleted": false,
-      "startWindowInMs": 7884000000,
-      "endWindowInMs": 7884000000,
-      "resources": ["resource link 1", "resource link 2"],
+      "startWindowInMs": 746496000000,
+      "endWindowInMs": 559872000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "4": {
+      "task": "Identify a mentor",
+      "description": "Identify a mentor",
+      "isCompleted": false,
+      "startWindowInMs": 746496000000,
+      "endWindowInMs": 559872000000,
+      "resources": ["https://www.va.gov/vso/"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "5": {
+      "task": "Create a LinkedIn account",
+      "description": "Create a LinkedIn account, and start to build your network",
+      "isCompleted": false,
+      "startWindowInMs": 746496000000,
+      "endWindowInMs": 559872000000,
+      "resources": ["https://www.linkedin.com/"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "6": {
+      "task": "Explore SkillBridgeor",
+      "description": "Explore SkillBridgeor career skills opportunities",
+      "isCompleted": false,
+      "startWindowInMs": 559872000000,
+      "endWindowInMs": 373248000000,
+      "resources": ["https://dodskillbridge.usalearning.gov/"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "7": {
+      "task": "Obtain copies of your medical records",
+      "description": "Obtain copies of your medical records",
+      "isCompleted": false,
+      "startWindowInMs": 373248000000,
+      "endWindowInMs": 186624000000,
+      "resources": ["https://www.tricare.mil/Resources/MedicalRecords"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "8": {
+      "task": "Eligibility for separation pay or early retiremente",
+      "description": "Determine if you are eligible for separation pay or early retirement",
+      "isCompleted": false,
+      "startWindowInMs": 373248000000,
+      "endWindowInMs": 186624000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "9": {
+      "task": "Pre-Separation Checklist (DD2648)",
+      "description": "Review your Pre-Separation Checklist (DD2648)",
+      "isCompleted": false,
+      "startWindowInMs": 93312000000,
+      "endWindowInMs": 93312000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "10": {
+      "task": "Research your health insurance options",
+      "description": "Research your health insurance options; register for TRICARE (if you are retiring",
+      "isCompleted": false,
+      "startWindowInMs": 93312000000,
+      "endWindowInMs": 93312000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "11": {
+      "task": "Begin applying and interviewing for positions",
+      "description": "If seeking employment, begin applying and interviewing for positions",
+      "isCompleted": false,
+      "startWindowInMs": 93312000000,
+      "endWindowInMs": 0,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "12": {
+      "task": "Prepare your Disability claim",
+      "description": "Begin to prepare your Disability claim with your local VSO (if applicable and not completed previously",
+      "isCompleted": false,
+      "startWindowInMs": 93312000000,
+      "endWindowInMs": 0,
+      "resources": ["https://www.va.gov/vso/"],
       "dateCompleted": "",
       "timeCompleted": ""
     }
