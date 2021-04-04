@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Spacer from "../ui/spacer";
 
 const Task = styled.div`
   display: flex;
@@ -150,8 +151,15 @@ const Tasks = ({
       </TaskName>
       <TaskDetails showDetails={showDetails}>
         {description}
-        <br />
-        resources: {resources}
+        <Spacer size={32}></Spacer>
+        Resources:
+        {resources && resources.length > 0
+          ? resources.map((item, ind) => (
+              <a key={ind} href={item}>
+                {item}
+              </a>
+            ))
+          : " None listed"}
         <br />
         {dateCompleted ? null : (
           <button onClick={handleCompleteTask}>Mark Complete</button>
