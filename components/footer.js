@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const FooterStyles = styled.footer`
-  border: solid hotpink;
-  padding: 8px;
+  background-color: var(--color-green-dark);
+  padding: 32px;
   margin-top: auto;
 `;
 
 export default function Footer() {
-  return <FooterStyles>Footer</FooterStyles>;
+  return <FooterStyles></FooterStyles>;
 }
