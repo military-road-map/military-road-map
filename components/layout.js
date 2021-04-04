@@ -1,6 +1,7 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import styled from "styled-components";
+import { Box } from "./box";
 
 const LayoutStyles = styled.section`
   display: flex;
@@ -12,7 +13,9 @@ export default function Layout({ children }) {
   return (
     <LayoutStyles>
       <Header />
-      <main>{children}</main>
+      <Box size={800} gutter={16}>
+        <main>{children}</main>
+      </Box>
       <Footer />
     </LayoutStyles>
   );
