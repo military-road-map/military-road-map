@@ -64,6 +64,40 @@ const Tasks = ({
     setDifferenceInDays(() => Math.ceil(differenceInTime / (1000 * 3600 * 24)));
   }, []);
 
+  function getDateComplete(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    return `${day}/${month + 1}/${year}`;
+  }
+
+  function getTimeComplete(date) {
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hour.toString().length === 1 ? `0${hour}` : hour}${minutes}`;
+  }
+
+  function handleCompleteTask() {
+    const date = new Date();
+
+    const complete = [
+      ...completedTasks,
+      {
+        taskId,
+        taskInfo: {
+          ...taskInfo,
+          dateCompleted: getDateComplete(date),
+          timeCompleted: getTimeComplete(date),
+        },
+      },
+    ];
+    const incomplete = incompleteTasks.slice();
+    incomplete.splice(index, 1);
+    setShowDetails(() => !showDetails);
+    setCompletedTasks(() => complete);
+    setIncompleteTasks(() => incomplete);
+  }
+
   return (
     <Task
       color={dateCompleted ? "green" : differenceInDays > 14 ? "yellow" : "red"}
@@ -85,36 +119,7 @@ const Tasks = ({
         resources: {resources}
         <br />
         {dateCompleted ? null : ( // `Completed on ${dateCompleted} at ${timeCompleted}`
-          <button
-            onClick={() => {
-              const date = new Date();
-              const year = date.getFullYear();
-              const month = date.getMonth();
-              const day = date.getDate();
-              const hour = date.getHours();
-              const minutes = date.getMinutes();
-              const complete = [
-                ...completedTasks,
-                {
-                  taskId,
-                  taskInfo: {
-                    ...taskInfo,
-                    dateCompleted: `${day}/${month + 1}/${year}`,
-                    timeCompleted: `${
-                      hour.toString().length === 1 ? `0${hour}` : hour
-                    }${minutes}`,
-                  },
-                },
-              ];
-              const incomplete = incompleteTasks.slice();
-              incomplete.splice(index, 1);
-              setShowDetails(() => !showDetails);
-              setCompletedTasks(() => complete);
-              setIncompleteTasks(() => incomplete);
-            }}
-          >
-            Completed
-          </button>
+          <button onClick={handleCompleteTask}>Completed</button>
         )}
       </TaskDetails>
     </Task>
