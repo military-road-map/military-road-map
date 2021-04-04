@@ -10,7 +10,7 @@ import { TrackerForm } from "../components/trackerForm";
 
 const ListHeader = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 0.1fr;
   width: 100%;
   justify-content: space-around;
   margin-top: 10px;
@@ -74,6 +74,13 @@ const Page = () => {
     await updateUserChecklists(updatedChecklists);
   }
 
+  async function handleRemoveChecklist(checklistInd) {
+    const copyAllChecklist = { ...allChecklists };
+    delete copyAllChecklist[checklistInd];
+    setAllChecklists(copyAllChecklist);
+    await updateUserChecklists(copyAllChecklist);
+  }
+
   function capitalizePCS(type) {
     if (type == "pcs") {
       return "PCS";
@@ -118,11 +125,27 @@ const Page = () => {
     checklistSpot = Object.keys(allChecklists).map((listId) => (
       <IndividualList
         key={listId}
-        onClick={() => router.push(`/tracks/${listId}`)}
+        onClick={() => {
+          router.push(`/tracks/${listId}`);
+        }}
       >
         <div>{allChecklists[listId].name}</div>
         <div className="type">{capitalizePCS(allChecklists[listId].type)}</div>
         <div>{allChecklists[listId].eventDate}</div>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            handleRemoveChecklist(listId);
+          }}
+          style={{
+            textAlign: "center",
+            placeSelf: "center",
+            fontSize: "var(--size-3)",
+            color: "red",
+          }}
+        >
+          &times;
+        </div>
       </IndividualList>
     ));
   }
