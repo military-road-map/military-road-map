@@ -9,7 +9,8 @@ import { useSession } from "next-auth/client";
 import { TrackerForm } from "../components/trackerForm";
 
 const ListHeader = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   justify-content: space-around;
   margin-top: 10px;
@@ -24,6 +25,10 @@ const IndividualList = styled(ListHeader)`
   padding: 5px;
   margin-bottom: 16px;
   background-color: hsl(140deg, 59%, 60%, 0.5);
+
+  .type {
+    text-transform: capitalize;
+  }
 
   :hover {
     background-color: hsl(140deg, 100%, 30%, 0.7);
@@ -69,6 +74,14 @@ const Page = () => {
     await updateUserChecklists(updatedChecklists);
   }
 
+  function capitalizePCS(type) {
+    if (type == "pcs") {
+      return "PCS";
+    } else {
+      return type;
+    }
+  }
+
   let checklistSpot;
 
   // Cannot show checklists if user is not logged in
@@ -108,7 +121,7 @@ const Page = () => {
         onClick={() => router.push(`/tracks/${listId}`)}
       >
         <div>{allChecklists[listId].name}</div>
-        <div>{allChecklists[listId].type}</div>
+        <div className="type">{capitalizePCS(allChecklists[listId].type)}</div>
         <div>{allChecklists[listId].eventDate}</div>
       </IndividualList>
     ));
