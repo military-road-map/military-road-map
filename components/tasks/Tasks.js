@@ -45,24 +45,27 @@ const Tasks = ({
   const {
     task,
     description,
-    startWindowInDays,
-    endWindowInDays,
+    endWindowInMs,
     resources,
     dateCompleted,
     timeCompleted,
   } = taskInfo;
+
+  console.log(taskInfo);
 
   const [differenceInDays, setDifferenceInDays] = useState(999999);
 
   useEffect(() => {
     const currentDate = new Date().getTime();
     const date = eventDate.split("-");
-    const dueDateString = `${date[1]}/${date[0]}/${date[2]}`;
-    const dueDate = new Date(dueDateString).getTime();
+    // const dueDateString = `${date[0]}/${date[1]}/${date[2]}`;
+    const dueDate = new Date(date[0], date[1] - 1, date[2]).getTime();
 
-    const differenceInTime =
-      dueDate + endWindowInDays * 1000 * 3600 * 24 - currentDate;
-    setDifferenceInDays(() => Math.ceil(differenceInTime / (1000 * 3600 * 24)));
+    const differenceInTime = Math.ceil(
+      (dueDate - endWindowInMs - currentDate) / (1000 * 60 * 60 * 24)
+    );
+
+    setDifferenceInDays(differenceInTime);
   }, []);
 
   function getDateComplete(date) {
@@ -80,11 +83,11 @@ const Tasks = ({
 
   function handleCompleteTask() {
     const date = new Date();
-    const dateCompleted = getDateComplete(date);
-    const timeCompleted = getTimeComplete(date);
+    const newDateCompleted = getDateComplete(date);
+    const newTimeCompleted = getTimeComplete(date);
 
     if (markTaskComplete) {
-      markTaskComplete(dateCompleted, timeCompleted);
+      markTaskComplete(newDateCompleted, newTimeCompleted);
     }
 
     const complete = [
@@ -93,8 +96,8 @@ const Tasks = ({
         taskId,
         taskInfo: {
           ...taskInfo,
-          dateCompleted,
-          timeCompleted,
+          newDateCompleted,
+          newTimeCompleted,
         },
       },
     ];

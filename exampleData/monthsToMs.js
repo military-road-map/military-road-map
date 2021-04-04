@@ -1,6 +1,6 @@
 function monthToMillisecond(month) {
   // month*#month/yr*#day/month*#hr/day*min/hr*sec/min*ms/sec
-  return month * 12 * 30 * 24 * 60 * 60 * 1000;
+  return month * 30 * 24 * 60 * 60 * 1000;
 }
 
 console.log(monthToMillisecond(24));
