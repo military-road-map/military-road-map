@@ -1,14 +1,19 @@
-import Header from '../components/header'
-import Footer from '../components/footer'
+import Header from "../components/header";
+import Footer from "../components/footer";
+import styled from "styled-components";
 
-export default function Layout ({children}) {
+const LayoutStyles = styled.section`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+`;
+
+export default function Layout({ children }) {
   return (
-    <>
-      <Header/>
-      <main>
-        {children}
-      </main>
-      <Footer/>
-    </>
-  )
+    <LayoutStyles>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </LayoutStyles>
+  );
 }
