@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 const BoxStyles = styled.div`
   max-width: ${(props) => props.size}px;
-  margin: 0 auto;
   padding: 0 ${(props) => props.gutter}px;
+  width: 100%;
+  margin: auto;
 `;
 
 export function Box({ size, children, gutter }) {
