@@ -91,6 +91,11 @@ export default function Header() {
                 <a>Trackers</a>
               </Link>
             </li>
+            <li className={styles.navItem}>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </li>
           </ul>
         </nav>
       </Box>
