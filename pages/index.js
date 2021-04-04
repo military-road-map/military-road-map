@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import Layout from "../components/layout";
 
@@ -20,6 +21,8 @@ const IndexStyles = styled.div`
 `;
 
 export default function index() {
+  const router = useRouter();
+
   return (
     <Layout>
       <IndexStyles>
@@ -34,7 +37,13 @@ export default function index() {
           Don’t be the service member who misses out on benefits or a program
           until its too late.
         </p>
-        <button>Get Started</button>
+        <button
+          onClick={() => {
+            router.push("/tracker");
+          }}
+        >
+          Get Started
+        </button>
       </IndexStyles>
     </Layout>
   );
