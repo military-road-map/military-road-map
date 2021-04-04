@@ -11,3 +11,16 @@ export async function createUserInDb(db, email, checklistToAdd) {
     return result;
   }
 }
+
+export async function updateUserChecklists(updatedChecklists) {
+  fetch("/api/user/checklists", {
+    method: "POST",
+    headers: {
+      "Content-Type": "applciation/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(updatedChecklists),
+  })
+    .then((resp) => resp.json())
+    .then(console.log);
+}

@@ -4,6 +4,7 @@ import { ChecklistContext } from "../components/contextAndProvider/context";
 import Layout from "../components/layout";
 import CreateNewTask from "../components/tasks/CreateNewTask";
 import Tasks from "../components/tasks/Tasks";
+import { updateUserChecklists } from "../util/dbUserUtil";
 
 const Checklist = () => {
   const router = useRouter();
@@ -32,8 +33,23 @@ const Checklist = () => {
     }
   }, [id]);
 
-  console.log(completedTasks);
-  console.log(incompleteTasks);
+  function markTaskComplete(taskId, dateCompleted, timeCompleted) {
+    // Making sure we change state immutably
+    // TODO - Probably a good idea to use immer or some immutability library in the future
+    const originalChecklist = allChecklists[id];
+    const originalTasks = originalChecklist.tasks;
+    const originalTask = originalTasks[taskId];
+    const updatedTask = { ...originalTask, dateCompleted, timeCompleted };
+    const updatedTasks = { ...originalTasks, [taskId]: updatedTask };
+    const updatedChecklist = { ...originalChecklist, tasks: updatedTasks };
+    const updatedAllChecklists = { ...allChecklists, [id]: updatedChecklist };
+
+    //Update State
+    setAllChecklists(updatedAllChecklists);
+
+    //Update Database
+    updateUserChecklists(updatedAllChecklists);
+  }
 
   return (
     <Layout>
@@ -55,6 +71,9 @@ const Checklist = () => {
             incompleteTasks={incompleteTasks}
             setIncompleteTasks={setIncompleteTasks}
             index={index}
+            markTaskComplete={(dateCompleted, timeCompleted) => {
+              markTaskComplete(taskId, dateCompleted, timeCompleted);
+            }}
           />
         ))}
       </div>
@@ -71,6 +90,7 @@ const Checklist = () => {
             incompleteTasks={incompleteTasks}
             setIncompleteTasks={setIncompleteTasks}
             index={index}
+            markTaskComplete={null}
           />
         ))}
       </div>

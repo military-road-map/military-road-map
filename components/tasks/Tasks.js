@@ -39,6 +39,7 @@ const Tasks = ({
   incompleteTasks,
   setIncompleteTasks,
   index,
+  markTaskComplete,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
   const {
@@ -79,6 +80,12 @@ const Tasks = ({
 
   function handleCompleteTask() {
     const date = new Date();
+    const dateCompleted = getDateComplete(date);
+    const timeCompleted = getTimeComplete(date);
+
+    if (markTaskComplete) {
+      markTaskComplete(dateCompleted, timeCompleted);
+    }
 
     const complete = [
       ...completedTasks,
@@ -86,8 +93,8 @@ const Tasks = ({
         taskId,
         taskInfo: {
           ...taskInfo,
-          dateCompleted: getDateComplete(date),
-          timeCompleted: getTimeComplete(date),
+          dateCompleted,
+          timeCompleted,
         },
       },
     ];

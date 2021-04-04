@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ChecklistContext } from "../components/contextAndProvider/context";
 import useSWR from "swr";
+import { updateUserChecklists } from "../util/dbUserUtil";
 
 const ListHeader = styled.div`
   display: flex;
@@ -47,16 +48,7 @@ const Page = () => {
 
       setAllChecklists(() => updatedChecklists);
 
-      fetch("/api/user/checklists", {
-        method: "POST",
-        headers: {
-          "Content-Type": "applciation/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(updatedChecklists),
-      })
-        .then((resp) => resp.json())
-        .then(console.log);
+      updateUserChecklists(updatedChecklists);
 
       document.getElementById("date").value = "";
       document.getElementById("checklistType").value = "none";
