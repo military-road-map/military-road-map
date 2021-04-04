@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { ChecklistContext } from "../components/contextAndProvider/context";
-import Layout from "../components/layout";
-import CreateNewTask from "../components/tasks/CreateNewTask";
-import Tasks from "../components/tasks/Tasks";
-import { updateUserChecklists } from "../util/dbUserUtil";
+import { ChecklistContext } from "../../components/contextAndProvider/context";
+import Layout from "../../components/layout";
+import CreateNewTask from "../../components/tasks/CreateNewTask";
+import Tasks from "../../components/tasks/Tasks";
+import { updateUserChecklists } from "../../util/dbUserUtil";
 
 const Checklist = () => {
   const router = useRouter();
