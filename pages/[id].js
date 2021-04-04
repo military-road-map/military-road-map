@@ -32,6 +32,9 @@ const Checklist = () => {
     }
   }, [id]);
 
+  console.log(completedTasks);
+  console.log(incompleteTasks);
+
   return (
     <Layout>
       <div style={{ textAlign: "center" }}>
@@ -43,6 +46,7 @@ const Checklist = () => {
         <h4 style={{ borderBottom: "1px solid black" }}>INCOMPLETE TASKS</h4>
         {incompleteTasks.map(({ taskId, taskInfo }, index) => (
           <Tasks
+            key={taskId}
             eventDate={eventDate}
             taskId={taskId}
             taskInfo={taskInfo}
@@ -58,6 +62,7 @@ const Checklist = () => {
         <h4 style={{ borderBottom: "1px solid black" }}>COMPLETE TASKS</h4>
         {completedTasks.map(({ taskId, taskInfo }, index) => (
           <Tasks
+            key={taskId}
             eventDate={eventDate}
             taskId={taskId}
             taskInfo={taskInfo}
