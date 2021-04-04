@@ -1,0 +1,37 @@
+{
+  "name": "VA Claims",
+  "type": "vaclaims",
+  "eventDate": "",
+  "tasks": {
+    "1": {
+      "task": "Gather DD-214",
+      "description": "DD-214 or other Discharge Documents Issued at Time of Service (DD-214 Member Copy 4 is the preferred copy to be submitted with a claim for VA benefits.)  Note: If you have more than one DD-214 you will need to provide each one for submission to the USDVA",
+      "isCompleted": false,
+      "startWindowInMs": 2592000000,
+      "endWindowInMs": 2592000000,
+      "resources": ["https://va.alabama.gov/va-claims-checklist/"],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "2": {
+      "task": "Gather proof of marriage",
+      "description": "Discharges which are Other Than Honorable (OTH) and Dishonorable will have to be examined for potential upgrade prior to gaining eligibility for benefits from USDVA.",
+      "isCompleted": false,
+      "startWindowInMs": 2592000000,
+      "endWindowInMs": 2592000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    },
+    "3": {
+      "task": "Gather children documents",
+      "description": "If you have dependent children, under age 23 who are full time students, you will need to provide their full names, dates of birth, and social security numbers as well. If you have an adopted child or children, we will need copies of the FINAL decree of adoption for that child/children as well.",
+      "isCompleted": false,
+      "startWindowInMs": 2592000000,
+      "endWindowInMs": 2592000000,
+      "resources": [],
+      "dateCompleted": "",
+      "timeCompleted": ""
+    }
+  }
+}
