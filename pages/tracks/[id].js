@@ -54,11 +54,6 @@ const Checklist = () => {
   return (
     <Layout>
       <div style={{ textAlign: "center" }}>
-        <CreateNewTask
-          incompleteTasks={incompleteTasks}
-          setIncompleteTasks={setIncompleteTasks}
-          eventDate={eventDate}
-        />
         <h4 style={{ borderBottom: "1px solid black" }}>INCOMPLETE TASKS</h4>
         {incompleteTasks.map(({ taskId, taskInfo }, index) => (
           <Tasks
@@ -94,6 +89,11 @@ const Checklist = () => {
           />
         ))}
       </div>
+      <CreateNewTask
+        incompleteTasks={incompleteTasks}
+        setIncompleteTasks={setIncompleteTasks}
+        eventDate={eventDate}
+      />
     </Layout>
   );
 };

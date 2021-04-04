@@ -16,7 +16,7 @@ export default function Layout({ children }) {
       <Box size={800} gutter={16}>
         <main>{children}</main>
       </Box>
-      {/* <Footer /> */}
+      <Footer />
     </LayoutStyles>
   );
 }

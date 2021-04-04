@@ -11,15 +11,37 @@ const Task = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 5px black;
   justify-content: space-between;
-  background-color: ${({ color }) => color};
+  cursor: pointer;
+
+  background-color: ${(props) => {
+    if (props.status === "completed") {
+      return "hsl(120deg,70%,30%)";
+    } else if (props.status === "upcoming") {
+      return "hsl(60deg,60%,60%)";
+    } else if (props.status === "overdue") {
+      return "hsl(0deg,60%,50%)";
+    }
+  }};
+
+  &:hover {
+    background-color: ${(props) => {
+      if (props.status === "completed") {
+        return "hsl(120deg,50%,50%)";
+      } else if (props.status === "upcoming") {
+        return "hsl(60deg,80%,50%)";
+      } else if (props.status === "overdue") {
+        return "red";
+      }
+    }};
+  }
 `;
+
 const TaskName = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
   border-bottom: ${({ showDetails }) =>
     showDetails ? "1px solid black" : "none"};
-  cursor: pointer;
 `;
 
 const TaskDetails = styled.div`
@@ -108,17 +130,23 @@ const Tasks = ({
 
   return (
     <Task
-      color={dateCompleted ? "green" : differenceInDays > 14 ? "yellow" : "red"}
+      status={
+        dateCompleted
+          ? "completed"
+          : differenceInDays > 30
+          ? "upcoming"
+          : "overdue"
+      }
+      onClick={() => setShowDetails(() => !showDetails)}
     >
-      <TaskName
-        showDetails={showDetails}
-        onClick={() => setShowDetails(() => !showDetails)}
-      >
+      <TaskName showDetails={showDetails}>
         <div>{task}</div>
         <div>
           {dateCompleted
             ? `Completed on ${dateCompleted} at ${timeCompleted}`
-            : `Due: ${differenceInDays} Days`}
+            : differenceInDays > 0
+            ? `Due in ${differenceInDays} Days`
+            : `Overdue by ${Math.abs(differenceInDays)} Days`}
         </div>
       </TaskName>
       <TaskDetails showDetails={showDetails}>
@@ -127,7 +155,7 @@ const Tasks = ({
         resources: {resources}
         <br />
         {dateCompleted ? null : ( // `Completed on ${dateCompleted} at ${timeCompleted}`
-          <button onClick={handleCompleteTask}>Completed</button>
+          <button onClick={handleCompleteTask}>Mark Complete</button>
         )}
       </TaskDetails>
     </Task>

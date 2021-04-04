@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Spacer from "../ui/spacer";
 
 const CreateNewTaskButton = styled.button`
   padding: 10px;
   border-radius: 5px;
-  margin: 10px;
+  margin: 0 auto;
+  text-align: center;
 `;
 
 const CreateNewTask = ({ incompleteTasks, setIncompleteTasks, eventDate }) => {
@@ -81,11 +83,19 @@ const CreateNewTask = ({ incompleteTasks, setIncompleteTasks, eventDate }) => {
       </CreateNewTaskButton>
     </fieldset>
   ) : (
-    <CreateNewTaskButton
-      onClick={() => setShowCreateTask(() => !showCreateTask)}
-    >
-      Create New Task
-    </CreateNewTaskButton>
+    <>
+      <Spacer size={32}></Spacer>
+      <h4>Create a new task for this tracker</h4>
+      <Spacer size={16}></Spacer>
+      <div style={{ display: "flex", alignContent: "center" }}>
+        <CreateNewTaskButton
+          onClick={() => setShowCreateTask(() => !showCreateTask)}
+          style={{ textAlign: "center" }}
+        >
+          Create New Task
+        </CreateNewTaskButton>
+      </div>
+    </>
   );
 };
 
