@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import styled from "styled-components";
-import { Box } from "./box";
+import { Box } from "./ui/box";
 
 const LayoutStyles = styled.section`
   display: flex;
