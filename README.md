@@ -23,7 +23,7 @@ Active Duty Service Members and Veterans
 
 There are so many resources, key events, and references it is easy for service members and veterans to be late for or miss key timelines for significant career events (separation, PCS, etc.). By allowing users to create template checklists, with resources, to interactively track their key events and share with others, we can ensure our service members and veterans don’t miss out.
 
-### IDEA
+### Idea
 
 A tailored resource created specifically for service members and veterans to help them to automatically track key the steps of key career events.
 
@@ -32,3 +32,11 @@ A tailored resource created specifically for service members and veterans to hel
 Frontend: React, Next.js
 Backend: Serverless Functions (Node.js), MongoDB
 Other: Next-Auth, Formik, Styled-Components
+
+### Screenshots
+
+![Home Screenshot](/screenshots/Home_Screenshot.jpg?raw=true)
+
+![Tracker Screenshot](/screenshots/Tracker_Screenshot.jpg?raw=true)
+
+![Tasks Screenshot](/screenshots/Tasks_Screenshot.jpg?raw=true)
