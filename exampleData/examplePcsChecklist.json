@@ -1,6 +1,7 @@
 {
-  "name": "PCS Checklist",
+  "label": "PCS Checklist",
   "type": "pcs",
+  "name": "",
   "eventDate": "01-01-2022",
   "tasks": {
     "1": {

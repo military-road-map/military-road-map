@@ -1,6 +1,7 @@
 {
-  "name": "Separation Checklist",
+  "label": "Separation Checklist",
   "type": "separation",
+  "name": "",
   "eventDate": "",
   "tasks": {
     "1": {

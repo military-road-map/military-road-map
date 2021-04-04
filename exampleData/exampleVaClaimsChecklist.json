@@ -1,5 +1,6 @@
 {
-  "name": "VA Claims",
+  "label": "VA Claims",
+  "name": "",
   "type": "vaclaims",
   "eventDate": "",
   "tasks": {
