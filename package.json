@@ -1,13 +1,10 @@
 {
-  "name": "next-auth-example",
-  "version": "0.0.0",
+  "name": "military-road-map",
+  "version": "1.0.0",
   "private": true,
-  "description": "An example project for NextAuth.js",
-  "repository": "https://github.com/nextauthjs/next-auth-example.git",
-  "bugs": {
-    "url": "https://github.com/nextauthjs/next-auth/issues"
-  },
-  "homepage": "http://next-auth-example.now.sh",
+  "description": "A Hackathon Project at Fall-In Vets",
+  "repository": "https://github.com/militaryroadmap/military-road-map",
+  "homepage": "https://military-road-map.vercel.app/",
   "main": "",
   "scripts": {
     "dev": "next",
@@ -15,9 +12,12 @@
     "start": "next start",
     "debug": "NODE_OPTIONS='--inspect' next"
   },
-  "author": "Iain Collins <me@iaincollins.com>",
+  "author": "Multiple",
   "contributors": [
-    "Balázs Orbán <info@balazsorban.com>"
+    "Mark Colby <macolby14@gmail.com>",
+    "Justin Umberger",
+    "Adrian T",
+    "Michael B"
   ],
   "license": "ISC",
   "dependencies": {
