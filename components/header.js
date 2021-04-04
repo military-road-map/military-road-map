@@ -1,7 +1,21 @@
-// import Link from "next/link";
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { Box } from "./ui/box";
 import styles from "./header.module.css";
+import styled from "styled-components";
+
+const HeaderStyles = styled.header`
+  background-color: hsla(120, 45%, 55%, 0.95);
+  color: white;
+
+  a {
+    color: white;
+
+    &:visited {
+      color: white;
+    }
+  }
+`;
 
 // The approach used in this component shows how to built a sign in and sign out
 // component that works on pages which support both client and server side
@@ -10,12 +24,12 @@ export default function Header() {
   const [session, loading] = useSession();
 
   return (
-    <header>
+    <HeaderStyles>
       <noscript>
         <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
       </noscript>
-      <div className={styles.signedInStatus}>
-        <Box size={800}>
+      <Box size={800}>
+        <div className={styles.signedInStatus}>
           <p
             className={`nojs-show ${
               !session && loading ? styles.loading : styles.loaded
@@ -64,17 +78,22 @@ export default function Header() {
               </>
             )}
           </p>
-        </Box>
-      </div>
-      {/* <nav>
-        <ul className={styles.navItems}>
-          <li className={styles.navItem}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-        </ul>
-      </nav> */}
-    </header>
+        </div>
+        <nav>
+          <ul className={styles.navItems}>
+            <li className={styles.navItem}>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li className={styles.navItem}>
+              <Link href="/tracker">
+                <a>Trackers</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </Box>
+    </HeaderStyles>
   );
 }
