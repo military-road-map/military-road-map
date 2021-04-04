@@ -15,7 +15,7 @@ const Task = styled.div`
 
   background-color: ${(props) => {
     if (props.status === "completed") {
-      return "hsl(120deg,70%,30%)";
+      return "hsl(120deg,70%,40%)";
     } else if (props.status === "upcoming") {
       return "hsl(60deg,60%,60%)";
     } else if (props.status === "overdue") {
