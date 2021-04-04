@@ -6,6 +6,7 @@ import { ChecklistContext } from "../components/contextAndProvider/context";
 import useSWR from "swr";
 import { updateUserChecklists } from "../util/dbUserUtil";
 import { useSession } from "next-auth/client";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const ListHeader = styled.div`
   display: flex;
@@ -29,6 +30,36 @@ const IndividualList = styled(ListHeader)`
   }
 `;
 
+const FormWrapperStyle = styled.div`
+  border-top: 2px solid black;
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    margin: 0 24px;
+    row-gap: 8px;
+    column-gap: 8px;
+  }
+
+  label {
+    text-align: right;
+  }
+
+  button {
+    width: fit-content;
+    margin: auto;
+    grid-column-start: span 2;
+  }
+
+  .error {
+    color: red;
+    font-size: var(--size-6);
+    margin-left: 8px;
+    display: inline-block;
+  }
+`;
+
 const TrackerStyle = styled.div`
   font-size: var(--size-4);
   width: 100%;
@@ -45,33 +76,26 @@ const Page = () => {
   const { allChecklists, setAllChecklists } = useContext(ChecklistContext);
   const { data: checklistTemplates } = useSWR("/api/checklists");
 
-  function handleAddChecklist(e) {
-    e.preventDefault();
-    const date = document.getElementById("date").value;
-    const checklistInd = document.getElementById("checklistType").value;
-    const checklistName = document.getElementById("checklistName").value;
+  async function handleAddChecklist(values) {
+    const date = values.checklistDate;
+    const checklistInd = values.checklistInd;
+    const checklistName = values.checklistName;
 
     const checklistTemplate = {
       ...checklistTemplates[checklistInd],
       eventDate: date,
     };
 
-    if (date && checklistInd !== "none" && checklistName) {
-      const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
+    const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
 
-      const updatedChecklists = {
-        ...allChecklists,
-        [index]: checklistTemplate,
-      };
+    const updatedChecklists = {
+      ...allChecklists,
+      [index]: checklistTemplate,
+    };
 
-      setAllChecklists(() => updatedChecklists);
+    setAllChecklists(() => updatedChecklists);
 
-      updateUserChecklists(updatedChecklists);
-
-      document.getElementById("date").value = "";
-      document.getElementById("checklistType").value = "none";
-      document.getElementById("checklistName").value = "";
-    }
+    await updateUserChecklists(updatedChecklists);
   }
 
   let checklistSpot;
@@ -132,16 +156,8 @@ const Page = () => {
           {checklistSpot}
         </section>
         <h2>Create a new Tracker</h2>
-        <div
-          style={{
-            margin: "16px 0px",
-            display: "flex",
-            justifyContent: "space-between",
-            borderTop: "2px solid black",
-            padding: "16px 5px",
-          }}
-        >
-          <form>
+        <FormWrapperStyle>
+          {/* <form>
             <label>
               Task Name:
               <input
@@ -169,8 +185,86 @@ const Page = () => {
             </select>
             <input id="date" type="date"></input>
             <button onClick={handleAddChecklist}>Submit</button>
-          </form>
-        </div>
+          </form> */}
+
+          <Formik
+            initialValues={{
+              checklistName: "",
+              checklistInd: "",
+              checklistDate: "",
+            }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.checklistName) {
+                errors.checklistName = "Required";
+              }
+              if (!values.checklistInd) {
+                errors.checklistInd = "Required";
+              }
+              if (!values.checklistDate) {
+                errors.checklistDate = "Required";
+              }
+              return errors;
+            }}
+            onSubmit={async (values, { setSubmitting }) => {
+              console.log("submitting");
+              await handleAddChecklist(values);
+              setSubmitting(false);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <label htmlFor="checklistName">Task Name:</label>
+                <div>
+                  <Field
+                    type="text"
+                    name="checklistName"
+                    placeholder="My Checklist Name"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="checklistName"
+                    component="div"
+                    style={{ display: "inline-block" }}
+                  />
+                </div>
+                <label htmlFor="checklistInd">Choose a checklist:</label>
+                <div>
+                  <Field as="select" name="checklistInd">
+                    {!checklistTemplates
+                      ? null
+                      : Object.entries(checklistTemplates).map(
+                          ([key, checklist]) => {
+                            return (
+                              <option key={key} value={key}>
+                                {checklist.name}
+                              </option>
+                            );
+                          }
+                        )}
+                  </Field>
+                  <ErrorMessage
+                    name="checklistType"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <label>Your target task date:</label>
+                <div>
+                  <Field type="date" name="checklistDate" />
+                  <ErrorMessage
+                    name="checklistDate"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </FormWrapperStyle>
       </TrackerStyle>
     </Layout>
   );

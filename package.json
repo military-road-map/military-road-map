@@ -21,6 +21,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "formik": "^2.2.6",
     "mongodb": "^3.6.5",
     "next": "^10.0.7",
     "next-auth": "latest",
