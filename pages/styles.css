@@ -62,7 +62,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background: var(--color-green-light);
   color: var(--color-black);
-  font: 18px;
+  font-size: 18px;
 }
 
 li,
