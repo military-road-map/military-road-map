@@ -62,7 +62,9 @@ const Page = () => {
       name: checklistName,
     };
 
-    const index = allChecklists ? Object.keys(allChecklists).length + 1 : 0;
+    const index = allChecklists
+      ? Math.max(...Object.keys(allChecklists)) + 1
+      : 0;
 
     const updatedChecklists = {
       ...allChecklists,
