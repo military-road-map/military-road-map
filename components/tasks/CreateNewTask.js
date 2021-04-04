@@ -82,21 +82,20 @@ const CreateNewTask = ({ incompleteTasks, setIncompleteTasks, eventDate }) => {
         Cancel
       </CreateNewTaskButton>
     </fieldset>
-  ) : (
-    <>
-      <Spacer size={32}></Spacer>
-      <h4>Create a new task for this tracker</h4>
-      <Spacer size={16}></Spacer>
-      <div style={{ display: "flex", alignContent: "center" }}>
-        <CreateNewTaskButton
-          onClick={() => setShowCreateTask(() => !showCreateTask)}
-          style={{ textAlign: "center" }}
-        >
-          Create New Task
-        </CreateNewTaskButton>
-      </div>
-    </>
-  );
+  ) : null;
+  // <>
+  //   <Spacer size={32}></Spacer>
+  //   <h4>Create a new task for this tracker</h4>
+  //   <Spacer size={16}></Spacer>
+  //   <div style={{ display: "flex", alignContent: "center" }}>
+  //     <CreateNewTaskButton
+  //       onClick={() => setShowCreateTask(() => !showCreateTask)}
+  //       style={{ textAlign: "center" }}
+  //     >
+  //       Create New Task
+  //     </CreateNewTaskButton>
+  //   </div>
+  // </>
 };
 
 export default CreateNewTask;
