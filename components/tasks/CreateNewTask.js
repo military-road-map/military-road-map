@@ -7,14 +7,6 @@ const CreateNewTaskButton = styled.button`
   margin: 10px;
 `;
 
-// const convertDateToNumberOfDays = (date) => {
-//   const dateSplit = date.split("-");
-//   const dateReformat = [dateSplit[1], dateSplit[2], dateSplit[0]].join("/");
-//   const newDate = new Date(dateReformat).getTime();
-//   console.log({ newDate });
-//   return newDate / (1000 * 3600 * 24);
-// };
-
 const CreateNewTask = ({ incompleteTasks, setIncompleteTasks, eventDate }) => {
   const [showCreateTask, setShowCreateTask] = useState(false);
   return showCreateTask ? (
@@ -25,22 +17,22 @@ const CreateNewTask = ({ incompleteTasks, setIncompleteTasks, eventDate }) => {
         <input type="text" id="taskName" />
       </label>
       <br />
-      <label for="startWindowInDays">
+      <label htmlFor="startWindowInDays">
         Make Task Available: <br />
         <input type="date" id="startWindowInDays" />
       </label>
       <br />
-      <label for="endWindowInDays">
+      <label htmlFor="endWindowInDays">
         Last Day To Complete: <br />
         <input type="date" id="endWindowInDays" />
       </label>
       <br />
-      <label for="description">
+      <label htmlFor="description">
         Description: <br />
         <textarea rows="4" id="description"></textarea>
       </label>
       <br />
-      <label for="resources">
+      <label htmlFor="resources">
         Resources: <br />
         <input type="text" id="resources" />
       </label>

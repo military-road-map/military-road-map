@@ -57,7 +57,6 @@ export function TrackerForm({ checklistTemplates, handleAddChecklist }) {
           return errors;
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          console.log("submitting");
           await handleAddChecklist(values);
           setSubmitting(false);
         }}

@@ -8,7 +8,6 @@ const BoxStyles = styled.div`
 `;
 
 export function Box({ size, children, gutter }) {
-  console.log(`box size ${size}`);
   return (
     <BoxStyles size={size} gutter={gutter}>
       {children}

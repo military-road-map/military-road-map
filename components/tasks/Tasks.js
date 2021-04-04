@@ -51,8 +51,6 @@ const Tasks = ({
     timeCompleted,
   } = taskInfo;
 
-  console.log(taskInfo);
-
   const [differenceInDays, setDifferenceInDays] = useState(999999);
 
   useEffect(() => {
